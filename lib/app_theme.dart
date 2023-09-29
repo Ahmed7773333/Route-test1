@@ -28,13 +28,13 @@ class AppTheme {
       ),
       bodyMedium: GoogleFonts.poppins(
         color: Colors.black,
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
       ),
-      bodySmall: GoogleFonts.poppins(
-        color: Colors.black.withOpacity(0.800000011920929),
-        fontSize: 15,
-        fontWeight: FontWeight.w600,
+      bodySmall: GoogleFonts.inter(
+        color: Color(0xFF371B34),
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
       ),
       titleSmall: GoogleFonts.poppins(
         color: Colors.black.withOpacity(0.5799999833106995),

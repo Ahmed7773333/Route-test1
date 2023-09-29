@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:route_test1/bottom_bar.dart';
 import 'package:route_test1/gets/local.dart';
 
 import 'app_theme.dart';
@@ -15,11 +16,11 @@ class RouteTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      locale: const Locale('ar'),
+      locale: const Locale('en'),
       translations: AppLocal(),
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: MyTabBarDemo(),
+      home: BottomBarScreen(),
       getPages: [],
     );
   }
