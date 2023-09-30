@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,9 @@ class First extends StatefulWidget {
 }
 
 class _FirstState extends State<First> {
+  List<Widget> dogs = [Dog(), Dog(), Dog()];
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     int index = 0;
@@ -136,59 +140,45 @@ class _FirstState extends State<First> {
               const SizedBox(
                 height: 16,
               ),
-              Container(
-                width: 530,
-                height: 150,
-                padding: const EdgeInsets.all(24),
-                decoration: ShapeDecoration(
-                  color: const Color(0xFFEBFDF2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: Row(
+              StatefulBuilder(builder: (context, setState) {
+                return Column(
                   children: [
-                    Column(
-                      children: [
-                        const Text(
-                          'Positive vibes',
-                          style: TextStyle(
-                            color: Color(0xFF344053),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const Text(
-                          'Boost your mood with positive vibes',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Image.asset('assets/play.png'),
-                            ),
-                            const Text(
-                              '10 mins',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
+                        height: 200.0,
+                        enlargeCenterPage: true,
+                        autoPlayInterval: Duration(seconds: 3),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                      ),
+                      items: dogs,
                     ),
-                    Image.asset('assets/dog.png'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: dogs.asMap().entries.map((entry) {
+                        int index = entry.key;
+                        return Container(
+                          width: 8.0,
+                          height: 8.0,
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 2.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _currentIndex == index
+                                ? Colors.blue
+                                : Colors.grey.withOpacity(0.7),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ],
-                ),
-              ),
+                );
+              }),
               const SizedBox(
                 height: 40,
               ),
@@ -235,7 +225,7 @@ class _FirstState extends State<First> {
                       ),
                       CustomIconText(
                         data: 'Meditation',
-                        image: 'assets/yoge.png',
+                        image: 'assets/yoga.png',
                       ),
                       const Spacer(),
                     ],
@@ -387,6 +377,67 @@ class CustomIconText extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class Dog extends StatelessWidget {
+  const Dog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 530,
+      height: 150,
+      padding: const EdgeInsets.all(24),
+      decoration: ShapeDecoration(
+        color: const Color(0xFFEBFDF2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+      child: Row(
+        children: [
+          Column(
+            children: [
+              const Text(
+                'Positive vibes',
+                style: TextStyle(
+                  color: Color(0xFF344053),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const Text(
+                'Boost your mood with positive vibes',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset('assets/play.png'),
+                  ),
+                  const Text(
+                    '10 mins',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          Image.asset('assets/dog.png'),
         ],
       ),
     );

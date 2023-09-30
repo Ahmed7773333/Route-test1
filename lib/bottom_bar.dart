@@ -18,7 +18,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     const Third(),
   ];
 
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   late PageController _pageController;
 
   @override

@@ -4,7 +4,6 @@ import 'package:route_test1/bottom_bar.dart';
 import 'package:route_test1/gets/local.dart';
 
 import 'app_theme.dart';
-import 'tab_bar.dart';
 
 void main(List<String> args) {
   runApp(const RouteTest());

@@ -21,7 +21,6 @@ class _SecondState extends State<Second> {
         child: SingleChildScrollView(
           child: StatefulBuilder(builder: (context, setState) {
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -112,13 +111,15 @@ class _SecondState extends State<Second> {
                 const SizedBox(
                   height: 47,
                 ),
-                const Text(
-                  'Workout Programs',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    'Workout Programs',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
                 Column(
